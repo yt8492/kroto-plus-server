@@ -1,7 +1,7 @@
 syntax = "proto3";
 option java_multiple_files = true;
-option java_package = "com.yt8492.grpcchat.protobuf";
-option java_outer_classname = "ChatProto";
+option java_package = "com.yt8492.krotosample.protobuf";
+option java_outer_classname = "KrotoSample";
 
 package api;
 
@@ -15,7 +15,9 @@ message MessageResponse {
 
 message Empty {}
 
-service ChatService {
-    rpc ExecStream (stream MessageRequest) returns (stream MessageResponse);
+service MessageService {
+    rpc BidirectionalStream (stream MessageRequest) returns (stream MessageResponse);
+    rpc ClientStream(stream MessageRequest) returns (MessageResponse);
+    rpc ServerStream(MessageRequest) returns (stream MessageResponse);
     rpc HealthCheck (Empty) returns (Empty);
 }

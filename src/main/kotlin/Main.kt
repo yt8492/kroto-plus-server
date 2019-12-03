@@ -5,7 +5,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 fun main() {
     val port = 6565
     val server = ServerBuilder.forPort(port)
-        .addService(ChatServiceImpl())
+        .addService(MessageServiceImpl())
         .build()
         .start()
     Runtime.getRuntime().addShutdownHook(Thread() {
