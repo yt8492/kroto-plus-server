@@ -1,6 +1,7 @@
 # Project exclude paths
 /.gradle/
 /api/build/
+/api/out/
 /build/
 /out/
 /out/production/classes/
