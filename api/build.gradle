@@ -6,10 +6,6 @@ plugins {
 group 'com.yt8492'
 version '1.0.0'
 
-application {
-    mainClassName = "MainKt"
-}
-
 repositories {
     mavenCentral()
 }
