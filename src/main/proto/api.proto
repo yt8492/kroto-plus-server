@@ -13,11 +13,9 @@ message MessageResponse {
     string message = 1;
 }
 
-message Empty {}
-
 service MessageService {
+    rpc Unary (MessageRequest) returns (MessageResponse);
+    rpc ClientStream (stream MessageRequest) returns (MessageResponse);
+    rpc ServerStream (MessageRequest) returns (stream MessageResponse);
     rpc BidirectionalStream (stream MessageRequest) returns (stream MessageResponse);
-    rpc ClientStream(stream MessageRequest) returns (MessageResponse);
-    rpc ServerStream(MessageRequest) returns (stream MessageResponse);
-    rpc HealthCheck (Empty) returns (Empty);
 }

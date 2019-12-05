@@ -15,6 +15,38 @@ class MessageServiceImpl : MessageServiceCoroutineGrpc.MessageServiceImplBase() 
     override val initialContext: CoroutineContext
         get() = Dispatchers.Default + SupervisorJob()
 
+    override suspend fun unary(
+        request: MessageRequest
+    ): MessageResponse {
+        return MessageResponse {
+            message = request.message.toUpperCase()
+        }
+    }
+
+    override suspend fun clientStream(
+        requestChannel: ReceiveChannel<MessageRequest>
+    ): MessageResponse {
+        val requestList = requestChannel.toList()
+        return MessageResponse {
+            message = requestList.joinToString("\n") {
+                it.message.toUpperCase()
+            }
+        }
+    }
+
+    override suspend fun serverStream(
+        request: MessageRequest,
+        responseChannel: SendChannel<MessageResponse>
+    ) {
+        val response = MessageResponse {
+            message = request.message.toUpperCase()
+        }
+        repeat(2) {
+            responseChannel.send(response)
+        }
+        responseChannel.close()
+    }
+
     override suspend fun bidirectionalStream(
         requestChannel: ReceiveChannel<MessageRequest>,
         responseChannel: SendChannel<MessageResponse>
@@ -25,24 +57,5 @@ class MessageServiceImpl : MessageServiceCoroutineGrpc.MessageServiceImplBase() 
             }
             responseChannel.send(response)
         }
-    }
-
-    override suspend fun clientStream(requestChannel: ReceiveChannel<MessageRequest>): MessageResponse {
-        val requestList = requestChannel.toList()
-        return MessageResponse {
-            message = requestList.joinToString("\n") {
-                it.message.toUpperCase()
-            }
-        }
-    }
-
-    override suspend fun serverStream(request: MessageRequest, responseChannel: SendChannel<MessageResponse>) {
-        val response = MessageResponse {
-            message = request.message.toUpperCase()
-        }
-        repeat(2) {
-            responseChannel.send(response)
-        }
-        responseChannel.close()
     }
 }
