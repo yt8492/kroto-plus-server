@@ -19,6 +19,7 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+
     implementation "com.github.marcoferrer.krotoplus:kroto-plus-coroutines:$krotoplus_version"
     implementation "com.github.marcoferrer.krotoplus:kroto-plus-message:$krotoplus_version"
 
@@ -53,7 +54,6 @@ protobuf {
         artifact = "com.google.protobuf:protoc:$protobuf_version"
     }
 
-    //noinspection GroovyAssignabilityCheck
     plugins {
         grpc { artifact = "io.grpc:protoc-gen-grpc-java:$grpc_version" }
         coroutines {

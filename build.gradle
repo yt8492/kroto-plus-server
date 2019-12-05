@@ -31,9 +31,6 @@ compileKotlin {
     kotlinOptions {
         jvmTarget = "1.8"
         freeCompilerArgs += [
-                // This flag is required due to the current implementation using
-                // the coroutine builder [CoroutineScope.actor]. This can be removed
-                // once the coroutines stdlib is updated with a suitable replacement
                 "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
         ]
     }
