@@ -15,6 +15,14 @@ class MessageServiceImpl : MessageServiceCoroutineGrpc.MessageServiceImplBase() 
     override val initialContext: CoroutineContext
         get() = Dispatchers.Default + SupervisorJob()
 
+    override suspend fun unary(
+        request: MessageRequest
+    ): MessageResponse {
+        return MessageResponse {
+            message = request.message.toUpperCase()
+        }
+    }
+
     override suspend fun clientStream(
         requestChannel: ReceiveChannel<MessageRequest>
     ): MessageResponse {

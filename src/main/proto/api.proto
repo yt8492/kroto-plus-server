@@ -14,7 +14,8 @@ message MessageResponse {
 }
 
 service MessageService {
-    rpc ClientStream(stream MessageRequest) returns (MessageResponse);
-    rpc ServerStream(MessageRequest) returns (stream MessageResponse);
+    rpc Unary (MessageRequest) returns (MessageResponse);
+    rpc ClientStream (stream MessageRequest) returns (MessageResponse);
+    rpc ServerStream (MessageRequest) returns (stream MessageResponse);
     rpc BidirectionalStream (stream MessageRequest) returns (stream MessageResponse);
 }
