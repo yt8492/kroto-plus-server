@@ -22,8 +22,6 @@ dependencies {
     implementation "com.github.marcoferrer.krotoplus:kroto-plus-coroutines:$krotoplus_version"
     implementation "com.github.marcoferrer.krotoplus:kroto-plus-message:$krotoplus_version"
 
-    implementation "com.google.protobuf:protobuf-java:$protobuf_version"
-
     implementation "io.grpc:grpc-protobuf:$grpc_version"
     implementation "io.grpc:grpc-stub:$grpc_version"
     implementation "io.grpc:grpc-netty:$grpc_version"
