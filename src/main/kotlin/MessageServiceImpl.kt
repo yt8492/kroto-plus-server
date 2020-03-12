@@ -10,7 +10,7 @@ import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.channels.toList
 import kotlin.coroutines.CoroutineContext
 
-@ExperimentalCoroutinesApi
+@OptIn(ExperimentalCoroutinesApi::class)
 class MessageServiceImpl : MessageServiceCoroutineGrpc.MessageServiceImplBase() {
     override val initialContext: CoroutineContext
         get() = Dispatchers.Default + SupervisorJob()
